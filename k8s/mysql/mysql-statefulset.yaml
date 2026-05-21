@@ -23,8 +23,12 @@ spec:
             - secretRef:
                 name: mysql-secret
           volumeMounts:
-            - name: mysql-data
-              mountPath: /var/lib/mysql
+            - name: mysql-init
+              mountPath: /docker-entrypoint-initdb.d
+      volumes:
+        - name: mysql-init
+          configMap:
+            name: mysql-init-script
   volumeClaimTemplates:
     - metadata:
         name: mysql-data

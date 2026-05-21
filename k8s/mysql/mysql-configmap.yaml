@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mysql-init-script
+  namespace: hackathon-9nett
+data:
+  init.sql: |
+    CREATE DATABASE IF NOT EXISTS hackathondb;
+    CREATE USER IF NOT EXISTS 'appuser'@'%' IDENTIFIED BY 'app123';
+    GRANT ALL PRIVILEGES ON hackathondb.* TO 'appuser'@'%';
+    FLUSH PRIVILEGES;
